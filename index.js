@@ -3,84 +3,62 @@
 var BinaryTree = require('binarytree');
 
 
-////////////////////////////
-///////////////////////////
-//                     //
-// BINARY SEARCH TREE //
-//                   //
-//////////////////////
-/////////////////////
+
+
+/*  Test tree:
+                 10
+              5     15
+            4   7      17
+               6 8   16
+*/
+
 
 
 class BinarySearchTree extends BinaryTree{
 
-    constructor(value, leftNode, rightNode){
-        super(value,leftNode,rightNode);
+  constructor(value){
+    super(value);
+  }
+
+
+  //O(n)
+  isValid(){
+    let prev = -Infinity;
+    let validity = true;
+    //Use in-order search
+    function search(node){
+      if(node.left && validity){ search(node.left) }
+      if(node.value <= prev){ validity = false; }
+      prev = node.value;
+      if(node.right && validity){ search(node.right) }
     }
+    search(this.root);
+    return validity;
+  }
 
-    isValid(){
-        var inOrderNodes = super.DSF('in');
-        for(var i=0; i < inOrderNodes.length-1; i++){
-            if(inOrderNodes[i] > inOrderNodes[i+1]){
-                return false;
-            }
-        }
-        return true
+
+  getMax(){
+    let result = null;
+    //O(l), where l is the depth
+    if(this.isValid()){
+      function search(node){
+        if(node.right){ search(node.right) }
+        result = result || node.value;
+      }
+      search(this.root);
     }
-
-    getLargestNthElement(nth){
-        var nth = nth || 1;
-        var inOrderNodes = super.DSF('in');
-        return inOrderNodes[inOrderNodes.length-nth]
+    else{
+      console.warn('Not valid BST, searching via O(n)')
+      let inOrder = super.inOrder();
+      result = inOrder.reduce((a, b) => {
+        return Math.max(a, b);
+      });
     }
+    return result;
+  }
 
-    getLeastCommonAncester(a, b){
-        //Check that both a and b actually exist
-        if(this.findPath(a) && this.findPath(b) && this.isValid()){
-            //Returns currentNode that is greater than min, and smaller than max
-            function recurse(currentNode, a, b){
-                //Invalid input
-                if(!currentNode || !a || !b){ return null }
-                //If currentNode is greater than max, decrement currentNode value (by going left);
-                if(currentNode.value > Math.max(a, b)){ return recurse(currentNode.left, a, b); }
-                //If currentNode is smaller than min, increment currentNode value (by going right);
-                else if(currentNode.value < Math.min(a, b)){ return recurse(currentNode.right, a, b); }
-                //If currentNode is greater than min, and smaller than max
-                else { return currentNode; }
-            }
-            return recurse(this, a, b).value;
-        }
-        else{ return null }
-    }
-
-
-
-
-    ///////////////////////
-    //   TO DELETE
-    ///////////////////////
-    getSecondLargestElement(){
-
-        var largestNode = null;
-        var largestNodeParent = null;
-
-        function recurse(node){
-            if(node.right){
-                largestNodeParent = node;
-                return recurse(node.right);
-            }
-            return {largestNode: node, largestNodeParent: largestNodeParent }
-        }
-
-        var response = recurse(this);
-
-        if(response.largestNode.left){
-            return getLargestElement(response.largestNode.left)
-        }else {
-            return response.largestNodeParent.value;
-        }
-    }
 
 }
+
 
 module.exports = BinarySearchTree;
