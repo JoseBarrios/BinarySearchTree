@@ -1,6 +1,6 @@
 {
   "name": "binarysearchtree",
-  "version": "1.0.1",
+  "version": "0.1.0",
   "description": "Binary Search Tree class for Javascript",
   "main": "index.js",
   "scripts": {
@@ -20,6 +20,6 @@
     "mocha": "^3.2.0"
   },
   "dependencies": {
-    "binarytree": "^1.0.0"
+    "binarytree": "^0.3.0"
   }
 }
