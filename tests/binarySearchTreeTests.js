@@ -11,14 +11,16 @@ var assert = require('assert');
                6 8   16
  */
 var numTree = new BinarySearchTree(10)
-let bNode = numTree.insert(5, 'left', numTree.root);
-let aNode = numTree.insert(4, 'left', bNode);
-let dNode = numTree.insert(7, 'right', bNode);
-let cNode = numTree.insert(6, 'left', dNode);
-let eNode = numTree.insert(8, 'right', dNode);
-let gNode = numTree.insert(15, 'right', numTree.root);
-let iNode = numTree.insert(17, 'right', gNode);
-let hNode = numTree.insert(16, 'left', iNode);
+numTree.insert(5);
+numTree.insert(4);
+numTree.insert(7);
+numTree.insert(6);
+numTree.insert(8);
+numTree.insert(15);
+numTree.insert(17);
+numTree.insert(16);
+numTree.insert(4);
+
 
 //Correct outputs
 const CORRECT_BFS = [10,5,15,4,7,17,6,8,16];
@@ -81,12 +83,6 @@ describe('BinarySearchTree', function() {
 
 
   //TODO
-
-  //describe('#toArray()', function() {
-    //it('should return an array representation of the binary tree', function() {
-      //assert.deepStrictEqual(numTree.toArray(), CORRECT_ARRAY);
-    //});
-  //});
 
   //describe('#getLeafDepths()', function() {
     //it('should return an array of leaf depths', function() {

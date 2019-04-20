@@ -1,9 +1,6 @@
 'use strict'
 
-var BinaryTree = require('binarytree');
-
-
-
+var BinaryTree = require('dc-binary-tree');
 
 /*  Test tree:
                  10
@@ -20,6 +17,27 @@ class BinarySearchTree extends BinaryTree{
     super(value);
   }
 
+  insert(value, node=this.root){
+
+    if(!node.data){ node.data = value; }
+
+    if(value < node.data){
+      if(node.left){
+        this.insert(value, node.left);
+      }
+      else{
+        node.left = value;
+      }
+    }
+    else if(value > node.data){
+      if(node.right){
+        this.insert(value, node.right);
+      }
+      else{
+        node.right = value;
+      }
+    }
+  }
 
   //O(n)
   isValid(){
@@ -28,22 +46,23 @@ class BinarySearchTree extends BinaryTree{
     //Use in-order search
     function search(node){
       if(node.left && validity){ search(node.left) }
-      if(node.value <= prev){ validity = false; }
-      prev = node.value;
+      if(node.data <= prev){ validity = false; }
+      prev = node.data;
       if(node.right && validity){ search(node.right) }
     }
     search(this.root);
     return validity;
   }
 
-
   getMax(){
     let result = null;
     //O(l), where l is the depth
     if(this.isValid()){
       function search(node){
-        if(node.right){ search(node.right) }
-        result = result || node.value;
+        if(node.right){
+          search(node.right)
+        }
+        result = result || node.data;
       }
       search(this.root);
     }

@@ -1,6 +1,6 @@
 {
-  "name": "binarysearchtree",
-  "version": "0.1.0",
+  "name": "dc-binary-search-tree",
+  "version": "0.0.1",
   "description": "Binary Search Tree class for Javascript",
   "main": "index.js",
   "scripts": {
@@ -8,18 +8,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/JoseBarrios/BinarySearchTree.git"
+    "url": "git+https://github.com/JoseBarrios/dc-binary-search-tree.git"
   },
   "author": "JoseBarrios",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/JoseBarrios/BinarySearchTree/issues"
+    "url": "https://github.com/JoseBarrios/dc-binary-search-tree/issues"
   },
-  "homepage": "https://github.com/JoseBarrios/BinarySearchTree#readme",
+  "homepage": "https://github.com/JoseBarrios/dc-binary-search-tree#readme",
   "devDependencies": {
-    "mocha": "^3.2.0"
+    "mocha": "^6.1.4"
   },
   "dependencies": {
-    "binarytree": "^0.3.0"
+    "dc-binary-tree": "^0.1.0"
   }
 }
