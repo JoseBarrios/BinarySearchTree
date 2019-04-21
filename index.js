@@ -1,6 +1,7 @@
 'use strict'
 
 var BinaryTree = require('dc-binary-tree');
+var _ = require('lodash');
 
 /*  Test tree:
                  10
@@ -74,6 +75,43 @@ class BinarySearchTree extends BinaryTree{
       });
     }
     return result;
+  }
+
+  delete(data){
+
+    if(_.isEqual(data, this.root.data)){
+      this.root = null;
+      return;
+    }
+    const LEFT_NODE = Symbol();
+    const RIGHT_NODE = Symbol();
+    let parentNode = null;
+    let side = null;
+
+    recurse(this.root);
+
+    function recurse(node){
+      if(_.isEqual(node.data, data)){
+        if(side === LEFT_NODE){
+          parentNode.left = null;
+        } else{
+          parentNode.right = null;
+        }
+        return;
+      }
+
+      if(node.left){
+        parentNode = node;
+        side = LEFT_NODE;
+        recurse(node.left);
+      }
+
+      if(node.right){
+        parentNode = node;
+        side = RIGHT_NODE;
+        recurse(node.right);
+      }
+    }
   }
 
 

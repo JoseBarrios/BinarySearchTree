@@ -20,6 +20,7 @@
     "mocha": "^6.1.4"
   },
   "dependencies": {
-    "dc-binary-tree": "^0.1.0"
+    "dc-binary-tree": "^0.1.0",
+    "lodash": "^4.17.11"
   }
 }

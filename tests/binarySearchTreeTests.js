@@ -79,6 +79,33 @@ describe('BinarySearchTree', function() {
     });
   });
 
+/*  Test tree:
+                 10
+              5     15
+            4   7      17
+               6 8   16
+ */
+  describe('#delete()', function() {
+    it('should delete an specific node in the tree', function() {
+      assert.deepStrictEqual(numTree.DFS('INORDER'), [4,5,6,7,8,10,15,16,17]);
+      numTree.delete(16); //delete left leaf
+      assert.deepStrictEqual(numTree.DFS('INORDER'), [4,5,6,7,8,10,15,17]);
+      numTree.delete(17); //delete right leaf
+      assert.deepStrictEqual(numTree.DFS('INORDER'), [4,5,6,7,8,10,15]);
+      numTree.delete(7); //delete parent with both sides
+      assert.deepStrictEqual(numTree.DFS('INORDER'), [4,5,10,15]);
+      numTree.delete(5); //delete parent with left side only
+      assert.deepStrictEqual(numTree.DFS('INORDER'), [10,15]);
+      numTree.insert(20);
+      assert.deepStrictEqual(numTree.DFS('INORDER'), [10,15, 20]);
+      numTree.delete(15); //delete parent with right side only
+      assert.deepStrictEqual(numTree.DFS('INORDER'), [10]);
+      numTree.delete(10); //delete root
+      assert.deepStrictEqual(numTree.DFS('INORDER'), []);
+    });
+  });
+
+
 
 
 
